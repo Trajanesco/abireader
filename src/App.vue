@@ -2,8 +2,8 @@
   <div>
     <Header />
     <main>
-      <Button icon-left="upload">Import file</Button>
-      <Loader />
+      <ImportFiles @loading="isLoading = $event" @files="files = $event" />
+      <Loader v-if="isLoading" />
       <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
         <template #test>
           <p>TEST CONTENT</p>
@@ -12,24 +12,22 @@
           <p>TEST 2 CONTENT</p>
         </template>
       </Accordion>
+      <pre>
+        Hej, tutaj trafią pliki
+        {{ files }}
+      </pre>
     </main>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import Accordion from './components/Accordion.vue';
 import Header from './components/Header.vue';
-import Button from './components/Button.vue';
 import Loader from './components/Loader.vue';
+import ImportFiles from './components/ImportFiles/ImportFiles.vue';
+import { ref } from 'vue';
 
-export default defineComponent({
-  components: {
-    Loader,
-    Button,
-    Accordion,
-    Header
-  }
-});
+const isLoading = ref(false);
+const files = ref([]);
 </script>
 
 <style>
