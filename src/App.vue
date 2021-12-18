@@ -3,6 +3,7 @@
     <Header />
     <main>
       <Button icon-left="upload">Import file</Button>
+      <Loader />
       <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
         <template #test>
           <p>TEST CONTENT</p>
@@ -19,9 +20,11 @@ import { defineComponent } from 'vue';
 import Accordion from './components/Accordion.vue';
 import Header from './components/Header.vue';
 import Button from './components/Button.vue';
+import Loader from './components/Loader.vue';
 
 export default defineComponent({
   components: {
+    Loader,
     Button,
     Accordion,
     Header
