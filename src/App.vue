@@ -2,6 +2,7 @@
   <div>
     <Header />
     <main>
+      <Button icon-left="upload">Import file</Button>
       <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
         <template #test>
           <p>TEST CONTENT</p>
@@ -17,9 +18,11 @@
 import { defineComponent } from 'vue';
 import Accordion from './components/Accordion.vue';
 import Header from './components/Header.vue';
+import Button from './components/Button.vue';
 
 export default defineComponent({
   components: {
+    Button,
     Accordion,
     Header
   }
@@ -27,6 +30,10 @@ export default defineComponent({
 </script>
 
 <style>
+*:focus {
+  outline: 2px solid #078e91 !important;
+  border-radius: var(--base-radius);
+}
 html,
 body {
   height: 100%;
