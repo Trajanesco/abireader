@@ -1,5 +1,22 @@
 :root {
-    --main-color: #219ebc;
-    --bg: #023047;
-    --light: #f5efef;
+    --main-color: #05415F;
+
+    /* for text */
+    --light: #EDEDED;
+
+    /* for headings in table */
+    --light-darken: #CAC3C3;
+
+    --green: #00C0A9;
+    --green-light: #0DE3E2;
+
+    --purple: #3609B3;
+    --blue: #035997;
+    --brown: #A39171;
+
+
+    /*** spacings ***/
+
+    --base-space: 8px;
+    --body-spacing: 32px;
 }
