@@ -20,7 +20,8 @@ import Header from './components/Header.vue';
 
 export default defineComponent({
   components: {
-    Accordion
+    Accordion,
+    Header
   }
 });
 </script>
