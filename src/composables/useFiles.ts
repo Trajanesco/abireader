@@ -8,7 +8,8 @@ const state: FilesStateI = reactive({
 export default function useFiles() {
   const getFiles = () => state.files;
 
-  const setFiles = (files) => {
+  // FIXME
+  const setFiles = (files: any) => {
     state.files = files;
   };
   const resetFiles = () => (state.files = []);
