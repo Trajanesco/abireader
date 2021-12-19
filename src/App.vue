@@ -5,7 +5,7 @@
       <SectionExplanation />
       <ImportFiles
         v-if="files.length === 0"
-        style="display: flex; justify-content: center"
+        class="flex justify-center"
         @loading="isLoading = $event"
       >
         <template #button-title>Import ABI file here</template>
