@@ -2,7 +2,11 @@
   <div>
     <Header />
     <main>
-      <ImportFiles @loading="isLoading = $event" @files="files = $event" />
+      <SectionExplanation />
+      <SectionContract>
+        <ImportFiles @loading="isLoading = $event" />
+      </SectionContract>
+
       <Loader v-if="isLoading" />
       <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
         <template #test>
@@ -24,13 +28,16 @@ import Accordion from './components/Accordion.vue';
 import Header from './components/Header.vue';
 import Loader from './components/Loader.vue';
 import ImportFiles from './components/ImportFiles/ImportFiles.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import SectionExplanation from './components/SectionExplanation/SectionExplanation.vue';
+import SectionContract from './components/SectionContract/SectionContract.vue';
+import useFiles from './composables/useFiles';
 
 const isLoading = ref(false);
-const files = ref([]);
+const files = computed(() => useFiles().getFiles());
 </script>
 
-<style>
+<style lang="scss">
 *:focus {
   outline: 2px solid #078e91 !important;
   border-radius: var(--base-radius);

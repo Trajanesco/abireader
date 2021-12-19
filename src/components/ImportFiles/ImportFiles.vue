@@ -15,6 +15,7 @@
 
 <script lang="ts" setup>
 import Button from '../Button.vue';
+import useFiles from '../../composables/useFiles';
 
 // FIXME: typescript
 const emit = defineEmits<{
@@ -31,7 +32,7 @@ const handleFile = (event: Event) => {
 
   worker.onmessage = function (event: MessageEvent) {
     console.log('result from loader', event);
-    emit('files', event.data);
+    useFiles().setFiles(event.data);
     emit('loading', false);
   };
 };
