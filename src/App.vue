@@ -3,23 +3,36 @@
     <Header />
     <main>
       <SectionExplanation />
-      <SectionContract>
-        <ImportFiles @loading="isLoading = $event" />
+      <ImportFiles
+        v-if="files.length === 0"
+        style="display: flex; justify-content: center"
+        @loading="isLoading = $event"
+      >
+        <template #button-title>Import ABI file here</template>
+      </ImportFiles>
+      <SectionContract v-if="files.length !== 0">
+        <ImportFiles @loading="isLoading = $event">
+          <template #button-title>Import file</template>
+        </ImportFiles>
       </SectionContract>
 
       <Loader v-if="isLoading" />
-      <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
-        <template #test>
-          <p>TEST CONTENT</p>
-        </template>
-        <template #test2>
-          <p>TEST 2 CONTENT</p>
-        </template>
-      </Accordion>
-      <pre>
+
+      <div v-if="files.length !== 0">
+        <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
+          <template #test>
+            <p>TEST CONTENT</p>
+          </template>
+          <template #test2>
+            <p>TEST 2 CONTENT</p>
+          </template>
+        </Accordion>
+        <pre>
         Hej, tutaj trafią pliki
         {{ files }}
-      </pre>
+      </pre
+        >
+      </div>
     </main>
   </div>
 </template>

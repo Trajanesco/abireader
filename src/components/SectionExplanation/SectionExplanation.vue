@@ -9,8 +9,10 @@
 </template>
 
 <script>
+import ImportFiles from '../ImportFiles/ImportFiles.vue';
 export default {
-  name: 'SectionExplanation'
+  name: 'SectionExplanation',
+  components: { ImportFiles }
 };
 </script>
 

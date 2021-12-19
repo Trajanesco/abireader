@@ -1,7 +1,7 @@
 <template>
   <div>
     <Button icon-left="upload" @click="$refs.inputFile.click()">
-      Import file
+      <slot name="button-title" />
     </Button>
     <input
       ref="inputFile"
