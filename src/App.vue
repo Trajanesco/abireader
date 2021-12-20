@@ -19,19 +19,19 @@
       <Loader v-if="isLoading" />
 
       <div v-if="files.length !== 0">
-        <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
-          <template #test>
-            <p>TEST CONTENT</p>
-          </template>
-          <template #test2>
-            <p>TEST 2 CONTENT</p>
-          </template>
-        </Accordion>
-        <pre>
-        Hej, tutaj trafią pliki
-        {{ files }}
-      </pre
-        >
+        <!--        <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">-->
+        <!--          <template #test>-->
+        <!--            <p>TEST CONTENT</p>-->
+        <!--          </template>-->
+        <!--          <template #test2>-->
+        <!--            <p>TEST 2 CONTENT</p>-->
+        <!--          </template>-->
+        <!--        </Accordion>-->
+        <AccordionSection />
+        <!--        <pre>-->
+        <!--        Hej, tutaj trafią pliki-->
+        <!--        {{ files }}-->
+        <!--      </pre>-->
       </div>
     </main>
   </div>
@@ -44,6 +44,7 @@ import ImportFiles from './components/ImportFiles/ImportFiles.vue';
 import { computed, ref } from 'vue';
 import SectionExplanation from './components/SectionExplanation/SectionExplanation.vue';
 import SectionContract from './components/SectionContract/SectionContract.vue';
+import AccordionSection from './components/AccordionSection/AccordionSection.vue';
 import useFiles from './composables/useFiles';
 
 const isLoading = ref(false);

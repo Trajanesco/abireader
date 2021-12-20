@@ -16,7 +16,7 @@ export default function useFiles() {
   const mapFile = (type: AbiEntryType) => {
     return useFiles()
       .getFiles()
-      .map((entry: AbiEntry) => entry.type === type);
+      .filter((entry: AbiEntry) => entry.type === type);
   };
 
   return {

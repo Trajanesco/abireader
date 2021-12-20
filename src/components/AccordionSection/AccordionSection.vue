@@ -1,34 +1,54 @@
 <template>
-  <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">
-    <template #test>
-      <p>TEST CONTENT</p>
+  <Accordion
+    :accordion-entries="[
+      { name: 'nonpayable' },
+      { name: 'payable' },
+      { name: 'view' },
+      { name: 'pure' },
+      { name: 'events' }
+    ]"
+  >
+    <template #nonpayable>
+      <p>{{ functions.nonpayable }}</p>
     </template>
-    <template #test2>
-      <p>TEST 2 CONTENT</p>
+    <template #payable>
+      <p>{{ functions.payable }}</p>
+    </template>
+    <template #view>
+      <p>{{ functions.view }}</p>
+    </template>
+    <template #pure>
+      <p>{{ functions.pure }}</p>
+    </template>
+    <template #events>
+      <p>{{ events }}</p>
     </template>
   </Accordion>
 </template>
 
 <script setup lang="ts">
+import Accordion from '../../components/Accordion.vue';
 import { computed } from 'vue';
 import useFiles from '../../composables/useFiles';
+import { AbiEntry, AbiEntryType, FunctionAbiEntry } from '../../api/types';
 
-const mapFile = (type: string) => {
-  return useFiles()
-    .getFiles()
-    .map((entry) => entry.type === type);
-};
-
-const events = computed(() => mapFile('events'));
+const events = computed(() => useFiles().mapFile(AbiEntryType.event));
 
 const functions = computed(() => {
   const functionsMapped = {
-    view: [],
-    payable: [],
-    nonpayable: [],
-    pure: []
+    view: [] as FunctionAbiEntry[],
+    payable: [] as FunctionAbiEntry[],
+    nonpayable: [] as FunctionAbiEntry[],
+    pure: [] as FunctionAbiEntry[]
   };
-  mapFile('functions').forEach((entry) => functionsMapped['view'].push(entry));
+  useFiles()
+    .mapFile(AbiEntryType.function)
+    .forEach((entry: AbiEntry) => {
+      functionsMapped[(entry as FunctionAbiEntry).stateMutability].push(
+        entry as FunctionAbiEntry
+      );
+    });
+  return functionsMapped;
 });
 </script>
 
