@@ -3,8 +3,9 @@
     <div class="flex justify-between items-center">
       <div class="flex justify-between items-center">
         <h3 class="title-contract">Constructor</h3>
+
         <div
-          v-if="constructor && constructor.stateMutability"
+          v-if="constructor.stateMutability"
           :class="['state-mutability', constructor.stateMutability]"
         >
           {{ constructor.stateMutability }}
@@ -12,26 +13,20 @@
       </div>
       <slot></slot>
     </div>
-    <template v-if="constructor && constructor.inputs">
-      {{ constructorInputs }}
+    <template v-if="constructor.inputs">
       <div class="constructor">
         <ul>
           <li
             v-for="(item, index) in constructor.inputs"
             :key="`index-${index}-constructor-type`"
-            class="flex justify-between"
+            class="constructor-li"
           >
-            <div class="text-center">
-              <div>Internal Type</div>
-              <div>{{ item.internalType }}</div>
-            </div>
-            <div class="text-center">
-              <div>Name</div>
-              <div>{{ item.name }}</div>
-            </div>
-            <div class="text-center">
-              <div>Type</div>
-              <div>{{ item.type }}</div>
+            <div
+              v-for="(value, key) in Object.keys(item)"
+              :key="`${key}-${index}`"
+            >
+              <div v-if="index === 0">{{ value }}</div>
+              {{ item[value] }}
             </div>
           </li>
         </ul>
@@ -41,15 +36,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef } from 'vue';
 import useFiles from '../../composables/useFiles';
-import { AbiEntry } from '../../api/types';
+import { AbiEntry, AbiEntryType } from '../../api/types';
 
-const constructor: ComputedRef<AbiEntry | undefined> = computed(() =>
-  useFiles()
-    .getFiles()
-    ?.find((item) => item.type === 'constructor')
-);
+const constructor: AbiEntry = useFiles().mapFile(AbiEntryType.constructor)[0];
 </script>
 
 <style scoped lang="scss">
@@ -79,5 +69,11 @@ const constructor: ComputedRef<AbiEntry | undefined> = computed(() =>
   &.payable {
     background-color: var(--green);
   }
+}
+
+.constructor-li {
+  display: grid;
+  grid-template-columns: 33.333% 33.3333% 1fr;
+  grid-gap: var(--base-space-2x);
 }
 </style>

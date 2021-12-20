@@ -14,9 +14,7 @@ export default function useFiles() {
   const resetFiles = () => (state.abiEntries = []);
 
   const mapFile = (type: AbiEntryType) => {
-    return useFiles()
-      .getFiles()
-      .filter((entry: AbiEntry) => entry.type === type);
+    return getFiles().filter((entry: AbiEntry) => entry.type === type);
   };
 
   return {
