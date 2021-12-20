@@ -19,19 +19,7 @@
       <Loader v-if="isLoading" />
 
       <div v-if="files.length !== 0">
-        <!--        <Accordion :accordion-entries="[{ name: 'test' }, { name: 'test2' }]">-->
-        <!--          <template #test>-->
-        <!--            <p>TEST CONTENT</p>-->
-        <!--          </template>-->
-        <!--          <template #test2>-->
-        <!--            <p>TEST 2 CONTENT</p>-->
-        <!--          </template>-->
-        <!--        </Accordion>-->
         <AccordionSection />
-        <!--        <pre>-->
-        <!--        Hej, tutaj trafią pliki-->
-        <!--        {{ files }}-->
-        <!--      </pre>-->
       </div>
     </main>
   </div>
