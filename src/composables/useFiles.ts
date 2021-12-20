@@ -1,22 +1,28 @@
 import { reactive } from 'vue';
-import { FilesStateI } from './types/useFiles.types';
+import { AbiEntry, AbiEntryType, ContractAbi } from '../api/types';
 
-const state: FilesStateI = reactive({
-  files: []
+const state: ContractAbi = reactive({
+  abiEntries: []
 });
 
 export default function useFiles() {
-  const getFiles = () => state.files;
+  const getFiles = (): AbiEntry[] => state.abiEntries;
 
-  // FIXME
-  const setFiles = (files: any) => {
-    state.files = files;
+  const setFiles = (files: AbiEntry[]) => {
+    state.abiEntries = files;
   };
-  const resetFiles = () => (state.files = []);
+  const resetFiles = () => (state.abiEntries = []);
+
+  const mapFile = (type: AbiEntryType) => {
+    return useFiles()
+      .getFiles()
+      .map((entry: AbiEntry) => entry.type === type);
+  };
 
   return {
     setFiles,
     resetFiles,
-    getFiles
+    getFiles,
+    mapFile
   };
 }

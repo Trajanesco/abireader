@@ -12,23 +12,43 @@
       </div>
       <slot></slot>
     </div>
-    <template v-if="constructor">
+    <template v-if="constructor && constructor.inputs">
+      {{ constructorInputs }}
       <div class="constructor">
-        {{ constructor }}
+        <ul>
+          <li
+            v-for="(item, index) in constructor.inputs"
+            :key="`index-${index}-constructor-type`"
+            class="flex justify-between"
+          >
+            <div class="text-center">
+              <div>Internal Type</div>
+              <div>{{ item.internalType }}</div>
+            </div>
+            <div class="text-center">
+              <div>Name</div>
+              <div>{{ item.name }}</div>
+            </div>
+            <div class="text-center">
+              <div>Type</div>
+              <div>{{ item.type }}</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </template>
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ComputedRef } from 'vue';
 import useFiles from '../../composables/useFiles';
+import { AbiEntry } from '../../api/types';
 
-const constructor = computed(
-  () =>
-    useFiles()
-      .getFiles()
-      ?.find((item) => item.type === 'constructor') || null
+const constructor: ComputedRef<AbiEntry | undefined> = computed(() =>
+  useFiles()
+    .getFiles()
+    ?.find((item) => item.type === 'constructor')
 );
 </script>
 
