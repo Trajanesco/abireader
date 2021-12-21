@@ -9,6 +9,7 @@
           :key="`menu-header-item-${index}`"
           class="menu-item-link"
           :href="item.link"
+          target="_blank"
         >
           {{ item.title }}
         </a>
@@ -25,8 +26,10 @@ interface MenuItemI {
 }
 
 const menu: MenuItemI[] = [
-  { title: 'About app', link: '/about' },
-  { title: 'Github', link: 'https://github.com/Trajanesco/abireader' }
+  {
+    title: 'Github',
+    link: 'https://github.com/Trajanesco/abireader'
+  }
 ];
 
 const appTitle: string = 'ABIreader';
