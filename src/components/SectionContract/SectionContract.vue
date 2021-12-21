@@ -25,7 +25,7 @@
               v-for="(value, key) in Object.keys(item)"
               :key="`${key}-${index}`"
             >
-              <div v-if="index === 0">{{ value }}</div>
+              <div v-if="index === 0">{{ capitalize(value) }}</div>
               {{ item[value] }}
             </div>
           </li>
@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import useFiles from '../../composables/useFiles';
 import { AbiEntry, AbiEntryType } from '../../api/types';
+import capitalize from '../../utils/capitalize';
 
 const constructor: AbiEntry = useFiles().mapFile(AbiEntryType.constructor)[0];
 </script>
