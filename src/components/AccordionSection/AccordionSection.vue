@@ -9,25 +9,26 @@
     ]"
   >
     <template #nonpayable>
-      <p>{{ functions.nonpayable }}</p>
+      <AccordionRowData :data-items="functions.nonpayable" />
     </template>
     <template #payable>
-      <p>{{ functions.payable }}</p>
+      <AccordionRowData :data-items="functions.payable" />
     </template>
     <template #view>
-      <p>{{ functions.view }}</p>
+      <AccordionRowData :data-items="functions.view" />
     </template>
     <template #pure>
-      <p>{{ functions.pure }}</p>
+      <AccordionRowData :data-items="functions.pure" />
     </template>
     <template #events>
-      <p>{{ events }}</p>
+      <AccordionRowData :data-items="events" />
     </template>
   </Accordion>
 </template>
 
 <script setup lang="ts">
 import Accordion from '../../components/Accordion.vue';
+import AccordionRowData from '../../components/AccordionSection/AccordionRowData.vue';
 import { computed } from 'vue';
 import useFiles from '../../composables/useFiles';
 import { AbiEntry, AbiEntryType, FunctionAbiEntry } from '../../api/types';
