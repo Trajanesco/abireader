@@ -48,6 +48,10 @@ html,
 body {
   height: 100%;
   font-size: 16px;
+}
+body {
+  color: var(--light);
+  padding: var(--body-spacing);
   background: rgb(1, 161, 149);
   background: linear-gradient(
     71deg,
@@ -55,9 +59,10 @@ body {
     rgba(17, 77, 131, 1) 48%,
     rgba(58, 5, 185, 1) 100%
   );
+  background-attachment: fixed;
 }
-body {
-  color: var(--light);
-  padding: var(--body-spacing);
+.app {
+  max-width: 1240px;
+  margin: 0 auto;
 }
 </style>
