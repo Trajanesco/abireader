@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SvgAnimation />
     <Header />
     <main>
       <SectionExplanation />
@@ -34,6 +35,7 @@ import SectionExplanation from './components/SectionExplanation/SectionExplanati
 import SectionContract from './components/SectionContract/SectionContract.vue';
 import AccordionSection from './components/AccordionSection/AccordionSection.vue';
 import useFiles from './composables/useFiles';
+import SvgAnimation from './components/SvgAnimation.vue';
 
 const isLoading = ref(false);
 const files = computed(() => useFiles().getFiles());
@@ -60,6 +62,8 @@ body {
     rgba(58, 5, 185, 1) 100%
   );
   background-attachment: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .app {
   max-width: 1240px;
