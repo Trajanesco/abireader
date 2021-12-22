@@ -1,18 +1,40 @@
 <template>
-  <div
-    :class="['shape-blob', `shape-blob--${index + 1}`]"
-    v-for="index in 8"
-  ></div>
+  <div :class="['shape-blob', `shape-blob--${index + 1}`]" v-for="index in 8" />
 </template>
 
-<script>
-export default {
-  name: 'SvgAnimation'
-};
+<script lang="ts" setup>
+import { onMounted } from 'vue';
+
+function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+onMounted(() => {
+  document.addEventListener('click', () => {
+    const shapes = document.querySelectorAll('.shape-blob');
+
+    shapes.forEach((it) => {
+      it.style.transform = `translate(${getRandomInt(1, 300)}px,${getRandomInt(
+        1,
+        300
+      )}px)`;
+      it.style.opacity = 0.06;
+
+      setTimeout(() => {
+        it.style.opacity = 0.1;
+      }, 1000);
+      console.log(it);
+    });
+  });
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .shape-blob {
+  transition: transform 0.5s cubic-bezier(0.17, 0.76, 0.22, 0.85),
+    opacity 0.5s cubic-bezier(0.17, 0.76, 0.22, 0.85);
   background: var(--purple);
   height: 200px;
   width: 200px;
@@ -31,7 +53,6 @@ export default {
     width: 100px;
     left: 20%;
     top: 10%;
-    transform: rotate(-180deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_two 50s ease-in-out infinite both;
   }
@@ -40,7 +61,6 @@ export default {
     width: 350px;
     left: 50%;
     top: 1%;
-    transform: rotate(-180deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_one 30s ease-in-out infinite both;
   }
@@ -49,7 +69,6 @@ export default {
     width: 180px;
     left: 20%;
     top: 50%;
-    transform: rotate(-180deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_three 20s ease-in-out infinite both;
   }
@@ -58,16 +77,14 @@ export default {
     width: 70px;
     left: 49%;
     top: 80%;
-    transform: rotate(-180deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_two 30s ease-in-out infinite both;
   }
   &--5 {
-    height: 440px;
-    width: 450px;
+    height: 240px;
+    width: 250px;
     left: -20%;
     top: 10%;
-    transform: rotate(-180deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_three 40s ease-in-out infinite both;
   }
@@ -76,7 +93,6 @@ export default {
     width: 181px;
     left: 21%;
     top: 50%;
-    transform: rotate(-10deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_one 40s ease-in-out infinite both;
     opacity: 0.03;
@@ -87,7 +103,6 @@ export default {
     width: 140px;
     left: 50%;
     top: 50%;
-    transform: rotate(-180deg);
     animation: transform 30s ease-in-out infinite both alternate,
       mv_two 30s ease-in-out infinite both;
   }

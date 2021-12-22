@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app-wrapper">
     <SvgAnimation />
     <Header />
     <main>
