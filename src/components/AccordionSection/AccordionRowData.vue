@@ -18,11 +18,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, index) in dataItems">
+      <tr v-for="(row, index) in dataItems" :key="`${index}__row`">
         <template v-for="(value, key) in row">
-          <td v-if="['inputs', 'outputs'].includes(key)">
-            <div v-for="ioEntry in value" class="flex justify-between">
-              <p v-for="(ioValue, ioKey) in ioEntry">
+          <td v-if="['inputs', 'outputs'].includes(key)" :key="`${index}__row__${key}`">
+            <div v-for="ioEntry in valueAsIOEntryList(value)" class="flex justify-between">
+              <p v-for="(ioValue, ioKey) of ioEntry">
                 {{ ioValue }}
               </p>
             </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { AbiEntry } from '../../api/types';
+import {AbiEntry, IOEntry} from '../../api/types';
 import { computed } from 'vue';
 import IOEntryTable from './IOEntryTable.vue';
 
@@ -51,6 +51,8 @@ const props = defineProps({
 const ioHeaders = ['internalType', 'name', 'type'];
 
 const headers = computed(() => Object.keys(props.dataItems[0]));
+
+const valueAsIOEntryList = (items: any): IOEntry[] => (items as IOEntry[]);
 </script>
 
 <style scoped></style>

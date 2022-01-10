@@ -21,9 +21,9 @@ export interface FunctionAbiEntry extends AbiEntry {
 
 export type IOEntry = {
   indexed?: boolean;
-  internalType: InputTypeEnum;
+  internalType: keyof typeof InputTypeEnum;
   name: string;
-  type: InputTypeEnum;
+  type: keyof typeof InputTypeEnum;
 };
 
 export enum AbiEntryType {

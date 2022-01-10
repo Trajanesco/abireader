@@ -8,7 +8,7 @@
         <button
           :ref="
             (el) => {
-              accordionItems[index] = el;
+              accordionItems[index] = castElement(el);
             }
           "
           class="accordion-opener"
@@ -69,6 +69,9 @@ export default defineComponent({
       } else {
         content.style.maxHeight = content.scrollHeight + 'px';
       }
+    },
+    castElement(el: any): HTMLElement {
+      return (el as HTMLElement)
     }
   }
 });

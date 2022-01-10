@@ -26,7 +26,7 @@
               :key="`${key}-${index}`"
             >
               <div v-if="index === 0">{{ capitalize(value) }}</div>
-              {{ item[value] }}
+              {{ getItemValue(item, value) }}
             </div>
           </li>
         </ul>
@@ -37,10 +37,12 @@
 
 <script setup lang="ts">
 import useFiles from '../../composables/useFiles';
-import { AbiEntry, AbiEntryType } from '../../api/types';
+import {AbiEntryType, FunctionAbiEntry, IOEntry} from '../../api/types';
 import capitalize from '../../utils/capitalize';
 
-const constructor: AbiEntry = useFiles().mapFile(AbiEntryType.constructor)[0];
+const constructor: FunctionAbiEntry = useFiles().mapFile(AbiEntryType.constructor)[0] as FunctionAbiEntry;
+
+const getItemValue = (item: IOEntry, value: string) => item[value as keyof IOEntry]
 </script>
 
 <style scoped lang="scss">
