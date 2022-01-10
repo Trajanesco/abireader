@@ -1,6 +1,6 @@
 {
-  "name": "webchaintool",
-  "version": "0.0.0",
+  "name": "abi-reader",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
